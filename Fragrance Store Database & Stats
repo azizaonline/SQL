@@ -1,0 +1,27 @@
+Create TABLE fragrances (id INTEGER PRIMARY KEY, name TEXT , rating INTEGER , category TEXT, aisle INTEGER); 
+INSERT INTO fragrances VALUES (1, "Black Opium" , 10, "vanilla", 12);
+INSERT INTO fragrances VALUES (2, "Flowerbomb" , 7 , "floral", 2); 
+INSERT INTO fragrances VALUES (3, "Daisy", 6 , "floral" , 3); 
+INSERT INTO fragrances VALUES (4, "le Sabo", 3, "green" , 7); 
+INSERT INTO fragrances VALUES (5, "libre", 6, "vanilla", 2);
+INSERT INTO fragrances VALUES (6, "Black orchid", 9, "vanilla", 3); 
+INSERT INTO fragrances VALUES (7, "LA VE EST BELLE", 9, "vanilla", 2);
+INSERT INTO fragrances VALUES (8 ,"LOVE DON'T BE SHY" , 10, "marshmellow" , 1); 
+INSERT INTO fragrances VALUES (9, "Good Girl", 10, "vanilla" , 3); 
+INSERT INTO fragrances VALUES (10, "bitter peach" , 3 , "peach", 7); 
+INSERT INTO fragrances VALUES (11, "Madagascar vanilla", 10, "vanilla" , 1); 
+INSERT INTO fragrances VALUES (12, "light blue", 8, "citrus", 12); 
+INSERT INTO fragrances VALUES (13, "baccarat rouge", 10, "vanilla",1);
+INSERT INTO fragrances VALUES (14, "ari" ,10, "vanilla", 3);
+INSERT INTO fragrances VALUES (15, "HER", 10, "strawberry", 7); 
+
+--display the database ordered by rating. 
+SELECT * FROM fragrances 
+ORDER BY rating desc; 
+
+--What is the avg price of items in the vanilla section?
+SELECT AVG(rating) "avg item rating" 
+FROM store 
+WHERE section = 'vanilla'; 
+
+
