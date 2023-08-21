@@ -2,6 +2,20 @@
 # Then I created a table to insert Spotify data into.
 # Finally, I performed analytics on the data using SQL. 
 
+--CTE--
+WITH popularity_average_CTE AS (
+SELECT s.artist_name,
+AVG(s.popularity) AS average_popularity
+FROM SpotifyData s 
+GROUP BY s.artist_name
+)
+ 
+SELECT  artist_name,
+        average_popularity,
+        'Top Star' AS tag
+FROM popularity_average_CTE
+WHERE average_popularity>=90;
+
 #Creating the table: 
 CREATE TABLE BIT_DB.Spotifydata (
 id integer PRIMARY KEY,
