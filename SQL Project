@@ -1,0 +1,53 @@
+--Display first name, last name, customer ID, and country of customers that live in the USA--
+SELECT FirstName, LastName, CustomerId, Country 
+FROM chinook.customers 
+WHERE Country != "USA";
+
+--Display all the customers from Brazil--
+SELECT * 
+FROM chinook.customers 
+WHERE Country = "Brazil" ;
+
+--Display invoices of customers who are from Brazil (customer's full name, invoice id, date of the invoice and billing country)--
+SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.BillingCountry, inv.InvoiceDate
+FROM chinook.invoices as inv 
+LEFT JOIN chinook.customers as cust 
+on inv.CustomerId = cust.CustomerId 
+WHERE inv.BillingCountry = "Brazil";
+
+Display all the customers from Brazil 
+SELECT * 
+FROM chinook.customers
+WHERE = "Brazil"
+
+--Display "Sales Support Agent(s)--
+SELECT * 
+FROM chinook.Employees
+WHERE Title = "Sales Support Agent" ;
+
+--Display the purchased track name with each invoice line ID--
+SELECT t.Name, i.InvoiceLineId
+FROM chinook.Invoice_items i
+JOIN chinook.Tracks t 
+ON i.TrackId = t.TrackId;
+
+--Display the total sales for 2009--
+SELECT SUM(Total)
+FROM chinook.Invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+
+--Display the Sales Agent that made the most dollars in sales in 2009--
+SELECT emp.FirstName, emp.LastName,
+ROUND(SUM(Inv.Total), 2) as 'Total Sales' 
+FROM chinook.Employees emp
+
+JOIN chinook.Customers cust 
+ON cust.SupportRepId = emp.EmployeeId
+
+JOIN chinook.Invoices Inv 
+ON Inv.CustomerId = cust.CustomerId
+
+WHERE emp.Title = 'Sales Support Agent' 
+AND Inv.InvoiceDate LIKE '2009%' 
+GROUP BY emp.FirstName
+ORDER BY (round(sum(Inv.Total), 2))  DESC LIMIT 1;
